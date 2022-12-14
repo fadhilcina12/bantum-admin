@@ -10,6 +10,7 @@ import Iconify from '../components/iconify';
 // sections
 import { LoginForm } from '../sections/auth/login';
 
+
 // ----------------------------------------------------------------------
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -41,7 +42,11 @@ const StyledContent = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function LoginPage() {
+
+
+
   const mdUp = useResponsive('up', 'md');
+
 
   return (
     <>
@@ -70,7 +75,7 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Masuk Admin Bantu UM
+              Masuk Admin BantUM
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>

@@ -1,28 +1,50 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
 
+
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
 
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    })
+
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-    navigate('/dashboard', { replace: true });
+  const handleClick = (e) => {
+      e.preventDefault();
+      axios.post('https://charity-backend.helpulstudio.com/api/login-admin', formData)
+          .then((response) => {
+                localStorage.setItem("token", response.data.token)
+                navigate("/dashboard/app")
+          }).catch((error) => {
+              console.log(error.message)
+      })
   };
 
   return (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField name="email" label="Email address"
+            onChange={(e) => {
+                setFormData({...formData, email: e.target.value})
+                console.log(formData.email)
+            }}
+        />
 
         <TextField
+          onChange={(e) => {
+              setFormData({...formData, password: e.target.value})
+          }}
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}

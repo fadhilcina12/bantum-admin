@@ -9,6 +9,15 @@ import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
 import ProductsPage from './pages/ProductsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
+import UsersPages from "./pages/users/UsersPages";
+import AddUsers from "./pages/users/AddUsers";
+import EditUsers from "./pages/users/EditUsers";
+import TypesPages from "./pages/types/TypesPages";
+import AddTypes from "./pages/types/AddTypes";
+import EditTypes from "./pages/types/EditTypes";
+import NeedyPeoplesPages from "./pages/needy-peoples/NeedyPeoplesPages";
+import AddNeedyPeople from "./pages/needy-peoples/AddNeedyPeople";
+import EditNeedyPeople from "./pages/needy-peoples/EditNeedyPeople";
 
 // ----------------------------------------------------------------------
 
@@ -20,7 +29,19 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
-        { path: 'user', element: <UserPage /> },
+
+        { path: 'user', element: <UsersPages /> },
+        { path: 'add-user', element: <AddUsers/>},
+        { path: 'edit-user/:id', element: <EditUsers/>},
+
+        {path: 'type', element: <TypesPages/>},
+        {path: 'add-type', element: <AddTypes/>},
+        {path: 'edit-type/:id', element: <EditTypes/>},
+
+        {path: 'needy-people', element: <NeedyPeoplesPages/>},
+        {path: 'add-needy-people', element: <AddNeedyPeople/>},
+        {path: 'edit-needy-people/:id', element: <EditNeedyPeople/>},
+
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
       ],

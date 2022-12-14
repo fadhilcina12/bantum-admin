@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { faker } from '@faker-js/faker';
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
@@ -18,10 +20,23 @@ import {
   AppConversionRates,
 } from '../sections/@dashboard/app';
 
+
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
   const theme = useTheme();
+
+  const token = localStorage.getItem("token")
+  const navigate = useNavigate()
+
+  
+
+  useEffect(() => {
+      if(!token){
+        navigate("/login")
+          console.log("Ada")
+      }
+  })
 
   return (
     <>
