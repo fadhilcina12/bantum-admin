@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import {Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Snackbar, Alert} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
@@ -13,10 +13,11 @@ import Iconify from '../../../components/iconify';
 export default function LoginForm() {
   const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    })
+  const [openSnackbar, setOpenSnackbar] = useState()
+  const [formData, setFormData] = useState({
+      email: "",
+      password: ""
+  })
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -24,10 +25,12 @@ export default function LoginForm() {
       e.preventDefault();
       axios.post('https://charity-backend.helpulstudio.com/api/login-admin', formData)
           .then((response) => {
+                console.log(response.data.token)
                 localStorage.setItem("token", response.data.token)
                 navigate("/dashboard/app")
           }).catch((error) => {
-              console.log(error.message)
+              console.log(error.response.data.errors[0])
+              setOpenSnackbar(true)
       })
   };
 
@@ -70,6 +73,15 @@ export default function LoginForm() {
       <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={handleClick}>
         Login
       </LoadingButton>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+          <Alert severity="error">Data kamu tidak valid!</Alert>
+      </Snackbar>
     </>
   );
 }

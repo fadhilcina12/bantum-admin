@@ -1,4 +1,5 @@
 // component
+import {Inventory, Moving} from "@mui/icons-material";
 import SvgColor from '../../../components/svg-color';
 
 // ----------------------------------------------------------------------
@@ -26,6 +27,16 @@ const navConfig = [
     path: '/dashboard/needy-people',
     icon: icon('ic_list'),
   },
+  {
+    title: 'Barang Donasi',
+    path: '/dashboard/item',
+    icon: <Inventory/>
+  },
+  {
+    title: 'Penyaluran Donasi',
+    path: '/dashboard/fund',
+    icon: <Moving/>
+  }
 ];
 
 export default navConfig;

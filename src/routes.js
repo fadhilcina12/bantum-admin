@@ -3,7 +3,6 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 import SimpleLayout from './layouts/simple';
 //
-import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
@@ -18,6 +17,11 @@ import EditTypes from "./pages/types/EditTypes";
 import NeedyPeoplesPages from "./pages/needy-peoples/NeedyPeoplesPages";
 import AddNeedyPeople from "./pages/needy-peoples/AddNeedyPeople";
 import EditNeedyPeople from "./pages/needy-peoples/EditNeedyPeople";
+import Item from "./pages/item/Item";
+import AddItem from "./pages/item/AddItem";
+import EditItem from "./pages/item/EditItem";
+import Fund from "./pages/fund/Fund";
+import AddFund from "./pages/fund/AddFund";
 
 // ----------------------------------------------------------------------
 
@@ -42,8 +46,14 @@ export default function Router() {
         {path: 'add-needy-people', element: <AddNeedyPeople/>},
         {path: 'edit-needy-people/:id', element: <EditNeedyPeople/>},
 
+        {path: 'item', element: <Item/>},
+        {path: 'add-item', element: <AddItem/>},
+        {path: 'edit-item/:id', element: <EditItem/>},
+
+        {path: 'fund', element: <Fund/>},
+        {path: 'add-fund', element: <AddFund/>},
+
         { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
       ],
     },
     {
